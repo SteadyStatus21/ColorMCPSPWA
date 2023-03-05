@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>MCPS Emergency Status</title>
+</head>
+<body>
+  <h1>MCPS Emergency Status</h1>
+  <p id="status">Loading...</p>
+  <script>
+    setInterval(() => {
+      fetch('/code-status')
+        .then(response => response.json())
+        .then(data => {
+          const statusElement = document.getElementById('status');
+          statusElement.textContent = `Status: ${data.color.toUpperCase()}`;
+          statusElement.style.color = data.color;
+        })
+        .catch(error => {
+          const statusElement = document.getElementById('status');
+          statusElement.textContent = 'Error fetching status';
+          statusElement.style.color = 'red';
+        });
+    }, 5000);
+  </script>
+</body>
+</html>
