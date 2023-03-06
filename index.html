@@ -310,7 +310,8 @@
     // Hide the prompt
     document.getElementById(promptId).style.display = "none";
 	//Cookie to never show again
-	document.cookie = 'hidePrompt=1;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/';
+	const daysToExpire = new Date(2147483647 * 1000).toUTCString();
+	document.cookie = 'hidePrompt=1;expires=' + daysToExpire;
 }
   </script>  
 </body>
