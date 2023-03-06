@@ -293,8 +293,8 @@
 		const break4 = document.createElement('br');
         document.body.appendChild(break4);
 		const pingTime = document.createElement('p');
-		pingTime.textContent = `${data.lastRequestDuration}`;
-		document.body.appendChild(pingTime + " ms");
+		pingTime.textContent = `${data.lastRequestDuration} ms`;
+		document.body.appendChild(pingTime);
 		
         //confetti!
         if (data.color != "green") {
