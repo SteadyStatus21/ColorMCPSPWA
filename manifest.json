@@ -3,7 +3,7 @@
     "background_color": "#fff",
     "display": "standalone",
     "scope": "/",
-    "start_url": "/index.html",
+    "start_url": "/ColorMCPSPWA/index.html",
     "name": "ColorMCPS",
     "short_name": "ColorMCPS",
     "icons": [
