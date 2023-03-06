@@ -279,8 +279,9 @@
 <script>
 	var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 	var isAndroid = /Android/.test(navigator.userAgent);
+	let hidePrompt = document.cookie.match(/hidePrompt=1/);
   
-	if (isIOS) {
+	if (isIOS & !hidePrompt) {
 	  // Display iOS prompt
 	  var iosPrompt = document.getElementById("ios-prompt");
 	  iosPrompt.style.display = "block";
@@ -292,7 +293,7 @@
 	  if (localStorage.getItem("iosPromptDismissed")) {
 		iosPrompt.style.display = "none";
 	  }
-	} else if (isAndroid) {
+	} else if (isAndroid & !hidePrompt) {
 	  // Display Android prompt
 	  var androidPrompt = document.getElementById("android-prompt");
 	  androidPrompt.style.display = "block";
@@ -308,6 +309,8 @@
 	function hidePrompt(promptId) {
     // Hide the prompt
     document.getElementById(promptId).style.display = "none";
+	//Cookie to never show again
+	document.cookie = 'hidePrompt=1;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/';
 }
   </script>  
 </body>
