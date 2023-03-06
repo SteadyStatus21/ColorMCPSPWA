@@ -334,44 +334,49 @@
 	var isAndroid = /Android/.test(navigator.userAgent);
 	let hidePromptCookie = document.cookie.match(/hidePrompt=1/);
   
-	if (isIOS & !hidePromptCookie) {
+	if (isIOS && !hidePromptCookie) {
 	  // Display iOS prompt
 	  var iosPrompt = document.getElementById("ios-prompt");
 	  iosPrompt.style.display = "block";
-	  var iosCloseButton = iosPrompt.querySelector(".close-button");
-	  iosCloseButton.addEventListener("click", function() {
-		iosPrompt.style.display = "none";
-		localStorage.setItem("iosPromptDismissed", "true");
-	  });
 	  if (localStorage.getItem("iosPromptDismissed")) {
 		iosPrompt.style.display = "none";
+	  } else {
+		var iosCloseButton = iosPrompt.querySelector("button");
+		iosCloseButton.addEventListener("click", function() {
+		  iosPrompt.style.display = "none";
+		  localStorage.setItem("iosPromptDismissed", "true");
+		});
 	  }
-	} else if (isAndroid & !hidePromptCookie) {
+	} else if (isAndroid && !hidePromptCookie) {
 	  // Display Android prompt
 	  var androidPrompt = document.getElementById("android-prompt");
 	  androidPrompt.style.display = "block";
-	  var androidCloseButton = androidPrompt.querySelector(".close-button");
-	  androidCloseButton.addEventListener("click", function() {
-		androidPrompt.style.display = "none";
-		localStorage.setItem("androidPromptDismissed", "true");
-	  });
 	  if (localStorage.getItem("androidPromptDismissed")) {
 		androidPrompt.style.display = "none";
+	  } else {
+		var androidCloseButton = androidPrompt.querySelector("button");
+		androidCloseButton.addEventListener("click", function() {
+		  androidPrompt.style.display = "none";
+		  localStorage.setItem("androidPromptDismissed", "true");
+		});
 	  }
 	}
+  
 	function hidePrompt(promptId) {
-    // Hide the prompt
-    document.getElementById(promptId).style.display = "none";
-	//Cookie to never show again
-	const daysToExpire = new Date(2147483647 * 1000).toUTCString();
-	document.cookie = 'hidePrompt=1;expires=' + daysToExpire;
-	//checks and adds 4 months cause of cors policy wth
-	const hidePromptCookieRefresh = document.cookie.replace(/(?:(?:^|.*;\s*)hidePrompt\s*\=\s*([^;]*).*$)|^.*$/, '$1');
-	if (hidePromptCookie) {
-	const fourMonthsFromNow = new Date(Date.now() + (4 * 30 * 24 * 60 * 60 * 1000)).toUTCString();
-	document.cookie = `hidePrompt=${hidePromptCookie}; expires=${fourMonthsFromNow};`;
-}
-}
-  </script>  
+	  // Hide the prompt
+	  document.getElementById(promptId).style.display = "none";
+  
+	  //Cookie to never show again
+	  const daysToExpire = new Date(2147483647 * 1000).toUTCString();
+	  document.cookie = 'hidePrompt=1;expires=' + daysToExpire;
+  
+	  //checks and adds 4 months cause of cors policy wth
+	  const hidePromptCookieRefresh = document.cookie.replace(/(?:(?:^|.*;\s*)hidePrompt\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+	  if (hidePromptCookieRefresh) {
+		const fourMonthsFromNow = new Date(Date.now() + (4 * 30 * 24 * 60 * 60 * 1000)).toUTCString();
+		document.cookie = `hidePrompt=${hidePromptCookieRefresh}; expires=${fourMonthsFromNow};`;
+	  }
+	}
+  </script>
 </body>
 </html>
