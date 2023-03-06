@@ -1,27 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>MCPS Emergency Status</title>
+	<meta charset="UTF-8">
+	<title>Response Color Display</title>
+	<style>
+	@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+		body {
+			display: grid;
+			align-items: center;
+			align-content: center;
+			justify-content: center;
+			height: 100vh;
+			background-color: #F5F5F5;
+			color: #222222;
+			font-family: 'Comfortaa', cursive;
+			text-align: center;
+			font-size: 24px;
+			line-height: 1.5;
+		}
+		h1, p {
+			margin: 0;
+		}
+	</style>
 </head>
 <body>
-  <h1>MCPS Emergency Status</h1>
-  <p id="status">Loading...</p>
-  <script>
-    setInterval(() => {
-      fetch('/code-status')
-        .then(response => response.json())
-        .then(data => {
-          const statusElement = document.getElementById('status');
-          statusElement.textContent = `Status: ${data.color.toUpperCase()}`;
-          statusElement.style.color = data.color;
-        })
-        .catch(error => {
-          const statusElement = document.getElementById('status');
-          statusElement.textContent = 'Error fetching status';
-          statusElement.style.color = 'red';
-        });
-    }, 5000);
-  </script>
+	<script>
+		fetch('http://129.158.214.153:3000/code-status')
+			.then(response => response.json())
+			.then(data => {
+				const colorCode = document.createElement('h1');
+				colorCode.textContent = `${data.color.toUpperCase()}`;
+				document.body.appendChild(colorCode);
+				const break1 = document.createElement('br');
+				document.body.appendChild(break1);
+				const break2 = document.createElement('br');
+				document.body.appendChild(break2);
+				const message = document.createElement('p');
+				message.textContent = `${data.message}`;
+				document.body.appendChild(message);
+				let gradient;
+				switch(data.color) {
+					case "green":
+						gradient = "linear-gradient(140deg, rgba(105,181,118,1) 0%, rgba(4,176,31,1) 44%, rgba(0,255,6,1) 100%)";
+						break;
+					case "yellow":
+						gradient = "linear-gradient(140deg, rgba(255,248,87,1) 0%, rgba(249,217,28,1) 44%, rgba(255,199,0,1) 100%)";
+						break;
+					case "red":
+						gradient = "linear-gradient(140deg, rgba(255,95,95,1) 0%, rgba(240,47,23,1) 44%, rgba(237,28,36,1) 100%)";
+						break;
+					default:
+						gradient = `linear-gradient(140deg, ${data.color}, #F5F5F5)`;
+				}
+				document.body.style.background = gradient;
+			})
+			.catch(error => console.error(error));
+	</script>
 </body>
 </html>
