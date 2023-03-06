@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="apple-touch-icon" sizes="180x180" href="/ColorMCPSPWA/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/ColorMCPSPWA/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/ColorMCPSPWA/favicon-16x16.png">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="manifest" href="/ColorMCPSPWA/manifest.json">
@@ -192,11 +195,57 @@
 			})
 			.catch(error => console.error(error));
 	</script>
-	<footer>
-	<a href="https://www.montgomeryschoolsmd.org/emergency/" class="button">
-			<i class="fas fa-external-link-alt"></i> Source (MCPS)</a>
-  <p>Created with care by SteadyStatus21. <a href="https://github.com/SteadyStatus21">GitHub</a></p>
-</footer>
+<footer>
+	<div id="bar-container">
+	  <p>Created by SteadyStatus21 (<a href="https://github.com/SteadyStatus21/">GitHub</a>)</p>
+	  <a href="https://montgomeryschoolsmd.org/emergency/" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> Source</a>
+	</div>
+	<button id="expand-button" onclick="toggleBar()">Expand</button>
+  </footer>
+  
+  <script>
+  function toggleBar() {
+	const barContainer = document.getElementById("bar-container");
+	const expandButton = document.getElementById("expand-button");
+	if (barContainer.classList.contains("collapsed")) {
+	  barContainer.classList.remove("collapsed");
+	  expandButton.textContent = "Collapse";
+	} else {
+	  barContainer.classList.add("collapsed");
+	  expandButton.textContent = "Expand";
+	}
+  }
+  </script>
+  
+  <style>
+  footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #000000;
+	font-color: #ffffff;
+	color: #ffffff;
+	font-size: 14px;
+	padding: 10px;
+	text-align: center;
+	font-family: 'Comfortaa', cursive;
+	overflow: hidden;
+  }
+  
+  #bar-container {
+	height: 100%;
+  }
+  
+  #bar-container.collapsed {
+	height: 0;
+  }
+  
+  #expand-button {
+	display: block;
+	margin: 0 auto;
+  }
+  </style>  
 <script src="https://kit.fontawesome.com/d2f3ff054e.js" crossorigin="anonymous"></script>
 </body>
 </html>
