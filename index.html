@@ -158,6 +158,24 @@
 	</script>
 </head>
 <body onload="showInstallPrompt()">
+	<div id="ios-prompt" style="display: none;">
+		<p>To install this app on your home screen:</p>
+		<ol>
+		  <li>Tap the <strong>Share</strong> icon at the bottom of the screen.</li>
+		  <li>Scroll down and tap <strong>Add to Home Screen</strong>.</li>
+		  <li>Tap <strong>Add</strong> in the upper-right corner.</li>
+		</ol>
+		<button onclick="hidePrompt()">Close</button>
+	  </div>
+	  <div id="android-prompt" style="display: none;">
+		<p>To install this app on your home screen:</p>
+		<ol>
+		  <li>Tap the <strong>Menu</strong> button.</li>
+		  <li>Tap <strong>Add to Home Screen</strong>.</li>
+		  <li>Tap <strong>Add</strong> in the confirmation window.</li>
+		</ol>
+		<button onclick="hidePrompt()">Close</button>
+	  </div>			
 	<script>
 	const jsConfetti = new JSConfetti()
 			const queryParams = new URLSearchParams(window.location.search);
@@ -212,7 +230,7 @@
 				let bgColor;
 				switch(data.color) {
 					case "green":
-						bgColor = "#32de84";
+						bgColor = "#74C365";
 						break;
 					case "yellow":
 						bgColor = "#FFC72C";
@@ -221,7 +239,7 @@
 						bgColor = "#0CAFFF";
 						break;
 					case "orange":
-						bgColor = "#FFBF00";
+						bgColor = "#F28C28";
 						break;
 					case "red":
 						bgColor = "#7C0A02";
@@ -286,5 +304,17 @@
 		arrow.classList.toggle('arrow');
 	});
 </script>
+<script>
+	var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+	var isAndroid = /Android/.test(navigator.userAgent);
+  
+	if (isIOS) {
+	  // Display iOS prompt
+	  document.getElementById("ios-prompt").style.display = "block";
+	} else if (isAndroid) {
+	  // Display Android prompt
+	  document.getElementById("android-prompt").style.display = "block";
+	}
+  </script>  
 </body>
 </html>
