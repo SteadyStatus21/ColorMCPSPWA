@@ -13,9 +13,9 @@
             "type": "image/png"
         }
     ],
-    "start_url": "/",
+    "start_url": "/ColorMCPSPWA/",
     "background_color": "#ffffff",
     "display": "standalone",
-    "scope": "/",
+    "scope": "/ColorMCPSPWA/",
     "theme_color": "#ffffff"
 }
