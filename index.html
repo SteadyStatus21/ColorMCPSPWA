@@ -15,6 +15,7 @@
 	<style>
 	@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 	body {
+		border: 5px transparent;
 		display: grid;
 		align-items: center;
 		align-content: center;
@@ -190,8 +191,6 @@
 				document.body.appendChild(colorCode);
 				const break1 = document.createElement('br');
 				document.body.appendChild(break1);
-				const break2 = document.createElement('br');
-				document.body.appendChild(break2);
 				const message = document.createElement('p');
 				message.textContent = `${data.message}`;
 				document.body.appendChild(message);
@@ -245,22 +244,6 @@
 	  <p>Created by SteadyStatus21 (<a href="https://github.com/SteadyStatus21/">GitHub</a>)</p>
 	  <a href="https://montgomeryschoolsmd.org/emergency/" class="btn btn-primary"><i class="fas fa-external-link-alt"></i>  Source</a>
 	</div>
-	<button id="expand-button" onclick="toggleBar()">Expand</button>
-  </footer>
-  
-  <script>
-  function toggleBar() {
-	const barContainer = document.getElementById("bar-container");
-	const expandButton = document.getElementById("expand-button");
-	if (barContainer.classList.contains("collapsed")) {
-	  barContainer.classList.remove("collapsed");
-	  expandButton.textContent = "Collapse";
-	} else {
-	  barContainer.classList.add("collapsed");
-	  expandButton.textContent = "Expand";
-	}
-  }
-  </script>
   
   <style>
   footer {
