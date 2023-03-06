@@ -312,6 +312,12 @@
 	//Cookie to never show again
 	const daysToExpire = new Date(2147483647 * 1000).toUTCString();
 	document.cookie = 'hidePrompt=1;expires=' + daysToExpire;
+	//checks and adds 4 months cause of cors policy wth
+	const hidePromptCookieRefresh = document.cookie.replace(/(?:(?:^|.*;\s*)hidePrompt\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+	if (hidePromptCookie) {
+	const fourMonthsFromNow = new Date(Date.now() + (4 * 30 * 24 * 60 * 60 * 1000)).toUTCString();
+	document.cookie = `hidePrompt=${hidePromptCookie}; expires=${fourMonthsFromNow};`;
+}
 }
   </script>  
 </body>
