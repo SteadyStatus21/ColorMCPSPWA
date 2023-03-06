@@ -160,6 +160,38 @@
           transform: translateY(0);
         }
       }
+	  #banner {
+		  position: fixed;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 50px;
+		  background-color: #000;
+		  color: #fff;
+		  font-size: 16px;
+		  text-align: center;
+		  line-height: 50px;
+		  z-index: 9999;
+		  overflow: hidden;
+		  transition: transform 0.5s, height 0.5s;
+		}
+
+		#banner.active {
+		  height: 80px;
+		  transform: translateY(0);
+		}
+
+		#banner p {
+		  margin: 0;
+		  padding: 0;
+		}
+
+		@media only screen and (max-width: 768px) {
+		  #banner {
+			display: none;
+		  }
+		}
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
@@ -176,9 +208,9 @@
     </script>
   </head>
   <body>
-    <div id="mobile-prompt">
-      <p>Install this as an app! Click <a href="#" id="install-link">here</a> to learn more! </p>
-    </div>
+    <div id="banner">
+	  <p>Install this as an app! Click on this banner to learn more!</p>
+	</div>
     <div id="ios-prompt" style="display: none;">
       <p>To install this app on your home screen:</p>
       <ol>
@@ -319,50 +351,52 @@
         });
       </script>
       <script>
-        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        var isAndroid = /Android/.test(navigator.userAgent);
-        let hidePromptCookie = document.cookie.match(/hidePrompt=1/);
-        if (isIOS && !hidePromptCookie) {
-          // Display iOS prompt
-          var iosPrompt = document.getElementById("ios-prompt");
-          iosPrompt.style.display = "block";
-          if (localStorage.getItem("iosPromptDismissed")) {
-            iosPrompt.style.display = "none";
-          } else {
-            var iosCloseButton = iosPrompt.querySelector("button");
-            iosCloseButton.addEventListener("click", function() {
-              iosPrompt.style.display = "none";
-              localStorage.setItem("iosPromptDismissed", "true");
-            });
-          }
-        } else if (isAndroid && !hidePromptCookie) {
-          // Display Android prompt
-          var androidPrompt = document.getElementById("android-prompt");
-          androidPrompt.style.display = "block";
-          if (localStorage.getItem("androidPromptDismissed")) {
-            androidPrompt.style.display = "none";
-          } else {
-            var androidCloseButton = androidPrompt.querySelector("button");
-            androidCloseButton.addEventListener("click", function() {
-              androidPrompt.style.display = "none";
-              localStorage.setItem("androidPromptDismissed", "true");
-            });
-          }
-        }
+		function hidePrompt(promptId) {
+		  var prompt = document.getElementById(promptId);
+		  prompt.style.display = "none";
+		}
 
-        function hidePrompt(promptId) {
-          // Hide the prompt
-          document.getElementById(promptId).style.display = "none";
-          //Cookie to never show again
-          const daysToExpire = new Date(2147483647 * 1000).toUTCString();
-          document.cookie = 'hidePrompt=1;expires=' + daysToExpire;
-          //checks and adds 4 months cause of cors policy wth
-          const hidePromptCookieRefresh = document.cookie.replace(/(?:(?:^|.*;\s*)hidePrompt\s*\=\s*([^;]*).*$)|^.*$/, '$1');
-          if (hidePromptCookieRefresh) {
-            const fourMonthsFromNow = new Date(Date.now() + (4 * 30 * 24 * 60 * 60 * 1000)).toUTCString();
-            document.cookie = `hidePrompt=${hidePromptCookieRefresh}; expires=${fourMonthsFromNow};`;
-          }
-        }
+		function checkMobile() {
+		  var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+		  return isMobile;
+		}
+
+		function checkiOS() {
+		  var isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+		  return isiOS;
+		}
+
+		function checkAndroid() {
+		  var isAndroid = /Android/i.test(navigator.userAgent);
+		  return isAndroid;
+		}
+
+		function showBanner() {
+		  if (checkMobile()) {
+			var banner = document.createElement("div");
+			banner.id = "banner";
+			var p = document.createElement("p");
+			p.innerHTML = "Install this as an app! Click on this banner to learn more!";
+			banner.appendChild(p);
+			document.body.appendChild(banner);
+
+			setTimeout(function() {
+			  banner.style.top = "0";
+			}, 10000);
+
+			banner.onclick = function() {
+			  if (checkiOS()) {
+				document.getElementById("ios-prompt").style.display = "block";
+			  } else if (checkAndroid()) {
+				document.getElementById("android-prompt").style.display = "block";
+			  }
+			  banner.style.display = "none";
+			};
+		  }
+		}
+
+		showBanner();
+
       </script>
   </body>
 </html>
