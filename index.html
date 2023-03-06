@@ -2,6 +2,23 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
 	<title>Response Color Display</title>
 	<style>
 	@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
@@ -10,7 +27,7 @@
 			align-items: center;
 			align-content: center;
 			justify-content: center;
-			height: 100vh;
+			height: 95vh;
 			background-color: #F5F5F5;
 			color: #222222;
 			font-family: 'Comfortaa', cursive;
@@ -21,11 +38,76 @@
 		h1, p {
 			margin: 0;
 		}
+		footer {
+		  position: fixed;
+		  bottom: 0;
+		  left: 0;
+		  right: 0;
+		  background-color: #000000;
+		  font-color: #ffffff;
+		  color: #ffffff;
+		  font-size: 14px;
+		  padding: 10px;
+		  text-align: center;
+		  font-family: 'Comfortaa', cursive;
+		}
+		footer a {
+			color: white;
+			text-decoration: none;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		
+		footer a:hover {
+			color: #999999;
+		}
+		
+		.button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 25px;
+			background-color: black;
+			color: white;
+			text-decoration: none;
+			padding: 5px;
+			border-radius: 0px;
+		}
+		
+		.button i {
+			margin-right: 5px;
+		}
 	</style>
+	<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 </head>
 <body>
 	<script>
-		fetch('http://129.158.214.153:3000/code-status')
+	const jsConfetti = new JSConfetti()
+			const queryParams = new URLSearchParams(window.location.search);
+			const debug = queryParams.get('debug');
+
+			let url = 'http://129.158.214.153:3000/code-status';
+			if (debug === 'green') {
+			  url += '?debug=green';
+			}
+			if (debug === 'yellow') {
+			  url += '?debug=yellow';
+			}
+			if (debug === 'blue') {
+			  url += '?debug=blue';
+			}
+			if (debug === 'orange') {
+			  url += '?debug=orange';
+			}
+			if (debug === 'red') {
+			  url += '?debug=red';
+			}
+			if (debug === 'purple') {
+			  url += '?debug=purple';
+			}
+			console.log(url);
+			fetch(url)
 			.then(response => response.json())
 			.then(data => {
 				const colorCode = document.createElement('h1');
@@ -38,23 +120,53 @@
 				const message = document.createElement('p');
 				message.textContent = `${data.message}`;
 				document.body.appendChild(message);
-				let gradient;
+				
+				//confetti!
+				if (data.color != "green") {
+					jsConfetti.addConfetti()
+				}
+				
+				if (data.color === "red") {
+				  colorCode.style.color = "white";
+				  message.style.color = "white";
+				}
+				if (data.color === "purple") {
+				  colorCode.style.color = "white";
+				  message.style.color = "white";
+				}
+				
+				let bgColor;
 				switch(data.color) {
 					case "green":
-						gradient = "linear-gradient(140deg, rgba(105,181,118,1) 0%, rgba(4,176,31,1) 44%, rgba(0,255,6,1) 100%)";
+						bgColor = "#32de84";
 						break;
 					case "yellow":
-						gradient = "linear-gradient(140deg, rgba(255,248,87,1) 0%, rgba(249,217,28,1) 44%, rgba(255,199,0,1) 100%)";
+						bgColor = "#FFC72C";
+						break;
+					case "blue":
+						bgColor = "#0CAFFF";
+						break;
+					case "orange":
+						bgColor = "#FFBF00";
 						break;
 					case "red":
-						gradient = "linear-gradient(140deg, rgba(255,95,95,1) 0%, rgba(240,47,23,1) 44%, rgba(237,28,36,1) 100%)";
+						bgColor = "#7C0A02";
+						break;
+					case "purple":
+						bgColor = "#800080";
 						break;
 					default:
-						gradient = `linear-gradient(140deg, ${data.color}, #F5F5F5)`;
+						bgColor = "#002244";
 				}
-				document.body.style.background = gradient;
+				document.body.style.background = bgColor;
 			})
 			.catch(error => console.error(error));
 	</script>
+	<footer>
+	<a href="https://www.montgomeryschoolsmd.org/emergency/" class="button">
+			<i class="fas fa-external-link-alt"></i> Source (MCPS)</a>
+  <p>Created with care by SteadyStatus21. <a href="https://github.com/SteadyStatus21">GitHub</a></p>
+</footer>
+<script src="https://kit.fontawesome.com/d2f3ff054e.js" crossorigin="anonymous"></script>
 </body>
 </html>
