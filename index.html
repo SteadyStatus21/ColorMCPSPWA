@@ -279,9 +279,9 @@
 <script>
 	var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 	var isAndroid = /Android/.test(navigator.userAgent);
-	let hidePrompt = document.cookie.match(/hidePrompt=1/);
+	let hidePromptCookie = document.cookie.match(/hidePrompt=1/);
   
-	if (isIOS & !hidePrompt) {
+	if (isIOS & !hidePromptCookie) {
 	  // Display iOS prompt
 	  var iosPrompt = document.getElementById("ios-prompt");
 	  iosPrompt.style.display = "block";
@@ -293,7 +293,7 @@
 	  if (localStorage.getItem("iosPromptDismissed")) {
 		iosPrompt.style.display = "none";
 	  }
-	} else if (isAndroid & !hidePrompt) {
+	} else if (isAndroid & !hidePromptCookie) {
 	  // Display Android prompt
 	  var androidPrompt = document.getElementById("android-prompt");
 	  androidPrompt.style.display = "block";
