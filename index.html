@@ -27,7 +27,7 @@
 		font-size: 24px;
 		line-height: 1.5;
 		padding-bottom: 80px; /* added */
-		}
+	}
 
 		footer {
 		position: fixed;
@@ -42,11 +42,11 @@
 		font-family: 'Comfortaa', cursive;
 		transition: height 0.5s; /* added */
 		height: 50px; /* added */
-		}
+	}
 
 		footer.expanded {
 		height: 150px; /* added */
-		}
+	}
 
 		footer a {
 		color: white;
@@ -54,11 +54,11 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		}
+	}
 
 		footer a:hover {
 		color: #999999;
-		}
+	}
 
 		.button {
 		display: flex;
@@ -74,12 +74,43 @@
 		bottom: 0; /* added */
 		transform: translateY(0); /* added */
 		transition: transform 0.5s; /* added */
-		}
+	}
 
 		footer.expanded .button {
 		bottom: 60px; /* added */
 		transform: translateY(-60px); /* added */
-		}
+	}
+		footer {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: #000000;
+		color: #ffffff;
+		font-size: 14px;
+		padding: 10px;
+		text-align: center;
+		font-family: 'Comfortaa', cursive;
+		transition: height 0.5s;
+		height: 50px;
+	}
+
+	/* Styles for the arrow */
+	.arrow {
+		display: block;
+		margin: 0 auto;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 10px 5px 0 5px;
+		border-color: #ffffff transparent transparent transparent;
+		transition: transform 0.5s;
+	}
+
+	/* Styles for the expanded arrow */
+	footer.expanded .arrow {
+		transform: rotate(180deg);
+	}
 	</style>
 	<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
@@ -207,6 +238,9 @@
 			.catch(error => console.error(error));
 	</script>
 <footer>
+	<span class="arrow">
+		<i class="fa fa-chevron-up"></i>
+	  </span>
 	<div id="bar-container">
 	  <p>Created by SteadyStatus21 (<a href="https://github.com/SteadyStatus21/">GitHub</a>)</p>
 	  <a href="https://montgomeryschoolsmd.org/emergency/" class="btn btn-primary"><i class="fas fa-external-link-alt"></i>  Source</a>
@@ -259,14 +293,16 @@
   </style>  
 <script src="https://kit.fontawesome.com/d2f3ff054e.js" crossorigin="anonymous"></script>
 <script>
-const footer = document.querySelector('footer');
-const button = document.querySelector('.button');
+	// JavaScript for expanding and collapsing the footer
+	const footer = document.querySelector('footer');
+	const arrow = document.createElement('span');
+	arrow.className = 'arrow';
+	footer.appendChild(arrow);
 
-button.addEventListener('click', () => {
-  footer.classList.toggle('expanded');
-  button.classList.toggle('hidden');
-});
-
+	footer.addEventListener('click', () => {
+		footer.classList.toggle('expanded');
+		arrow.classList.toggle('arrow');
+	});
 </script>
 </body>
 </html>
