@@ -13,169 +13,161 @@
 	<meta name="theme-color" content="#ffffff">
 	<title>ColorMCPS | Do you have school today?</title>
 	<style>
-	@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
-	body {
-		border: 10px transparent;
-		display: grid;
-		align-items: center;
-		align-content: center;
-		justify-content: center;
-		height: 95vh;
-		background-color: #F5F5F5;
-		color: #222222;
-		font-family: 'Comfortaa', cursive;
-		text-align: center;
-		font-size: 24px;
-		line-height: 1.5;
-		padding-bottom: 80px; /* added */
-		overflow: hidden;
-		touch-action: none;
-	}
-
-		footer {
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		background-color: #000000;
-		color: #ffffff;
-		font-size: 14px;
-		padding: 10px;
-		text-align: center;
-		font-family: 'Comfortaa', cursive;
-		transition: height 0.5s; /* added */
-		height: 50px; /* added */
-	}
-
-		footer.expanded {
-		height: 150px; /* added */
-	}
-
-		footer a {
-		color: white;
-		text-decoration: none;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-		footer a:hover {
-		color: #999999;
-	}
-
-		.button {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		height: 25px;
-		background-color: black;
-		color: white;
-		text-decoration: none;
-		padding: 5px;
-		border-radius: 0px;
-		position: relative; /* added */
-		bottom: 0; /* added */
-		transform: translateY(0); /* added */
-		transition: transform 0.5s; /* added */
-	}
-
-		footer.expanded .button {
-		bottom: 60px; /* added */
-		transform: translateY(-60px); /* added */
-	}
-		footer {
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		background-color: #000000;
-		color: #ffffff;
-		font-size: 14px;
-		padding: 10px;
-		text-align: center;
-		font-family: 'Comfortaa', cursive;
-		transition: height 0.5s;
-		height: 50px;
-	}
-
-	/* Styles for the arrow */
-	.arrow {
-		display: block;
-		margin: 0 auto;
-		width: 0;
-		height: 0;
-		border-style: solid;
-		border-width: 10px 5px 0 5px;
-		border-color: #ffffff transparent transparent transparent;
-		transition: transform 0.5s;
-	}
-
-	/* Styles for the expanded arrow */
-	footer.expanded .arrow {
-		transform: rotate(180deg);
-	}
-	#ios-prompt, #android-prompt {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-color: rgba(0, 0, 0, 0.8);
-		color: #000;
-		transition: height 0.3s ease-in-out;
-		z-index: 9999;
+		@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+		body {
+			border: 10px transparent;
+			display: grid;
+			align-items: center;
+			align-content: center;
+			justify-content: center;
+			height: 95vh;
+			background-color: #F5F5F5;
+			color: #222222;
+			font-family: 'Comfortaa', cursive;
+			text-align: center;
+			font-size: 24px;
+			line-height: 1.5;
+			padding-bottom: 80px;
+			overflow: hidden;
+			touch-action: none;
 		}
 
+		footer {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: #000000;
+			color: #ffffff;
+			font-size: 14px;
+			padding: 10px;
+			text-align: center;
+			font-family: 'Comfortaa', cursive;
+			transition: height 0.5s;
+			height: 50px;
+		}
+
+		footer.expanded {
+			height: 150px;
+		}
+
+		footer a {
+			color: white;
+			text-decoration: none;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		footer a:hover {
+			color: #999999;
+		}
+
+		.button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 25px;
+			background-color: black;
+			color: white;
+			text-decoration: none;
+			padding: 5px;
+			border-radius: 0px;
+			position: relative;
+			bottom: 0;
+			transform: translateY(0);
+			transition: transform 0.5s;
+		}
+
+		footer.expanded .button {
+			bottom: 60px;
+			transform: translateY(-60px);
+		}
+
+		/* Styles for the arrow */
+		.arrow {
+			display: block;
+			margin: 0 auto;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 10px 5px 0 5px;
+			border-color: #ffffff transparent transparent transparent;
+			transition: transform 0.5s;
+		}
+
+		/* Styles for the expanded arrow */
+		footer.expanded .arrow {
+			transform: rotate(180deg);
+		}
+
+		#ios-prompt, #android-prompt {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.8);
+			color: #000;
+			transition: height 0.3s ease-in-out;
+			z-index: 9999;
+		}
 
 		#ios-prompt p,
 		#android-prompt p {
-		font-size: 1.2rem;
-		font-weight: bold;
-		margin: 0 0 1rem 0;
+			font-size: 1.2rem;
+			font-weight: bold;
+			margin: 0 0 1rem 0;
 		}
 
 		#ios-prompt ol,
 		#android-prompt ol {
-		font-size: 1.2rem;
-		margin: 1rem;
-		padding: 0;
-		list-style-type: decimal;
+			font-size: 1.2rem;
+			margin: 1rem;
+			padding: 0;
+			list-style-type: decimal;
 		}
 
 		#ios-prompt li,
 		#android-prompt li {
-		margin: 0.5rem 0;
+			margin: 0.5rem 0;
 		}
 
 		#ios-prompt button,
 		#android-prompt button {
-		background-color: #fff;
-		color: #000;
-		font-size: 1.2rem;
-		font-weight: bold;
-		border: none;
-		border-radius: 5px;
-		padding: 0.5rem 1rem;
-		margin: 1rem;
+			background-color: #fff;
+			color: #000;
+			font-size: 1.2rem;
+			font-weight: bold;
+			border: none;
+			border-radius: 5px;
+			padding: 0.5rem 1rem;
+			margin: 0.5rem;
 		cursor: pointer;
 		}
 
-		#ios-prompt.show,
-		#android-prompt.show {
-		height: 100%;
+		#ios-prompt button:hover,
+		#android-prompt button:hover {
+		background-color: #000;
+		color: #fff;
 		}
-		#ios-prompt,
-		#android-prompt {
-		display: none;
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		background-color: #f8f9fa;
-		border-top: 1px solid #dee2e6;
-		padding: 20px;
-		animation: slide-up 0.5s ease-out forwards;
+
+		#ios-prompt .prompt-close,
+		#android-prompt .prompt-close {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		font-size: 2rem;
+		color: #fff;
+		cursor: pointer;
 		}
+
+		@media screen and (max-width: 768px) {
+		body {
+		font-size: 18px;
+		}
+		}
+
 
 		@keyframes slide-up {
 		from {
