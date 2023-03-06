@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="manifest" href="/ColorMCPSPWA/manifest.json">
 	<meta name="apple-mobile-web-app-title" content="ColorMCPS">
 	<meta name="application-name" content="ColorMCPS">
@@ -68,6 +69,19 @@
 		}
 	</style>
 	<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+	<script>
+	if ('serviceWorker' in navigator) {
+		window.addEventListener('load', () => {
+		navigator.serviceWorker.register('/sw.js')
+			.then(registration => {
+			console.log('Service worker registered:', registration);
+			})
+			.catch(error => {
+			console.error('Error registering service worker:', error);
+			});
+		});
+	}
+	</script>	  
 </head>
 <body>
 	<script>
@@ -156,6 +170,5 @@
   <p>Created with care by SteadyStatus21. <a href="https://github.com/SteadyStatus21">GitHub</a></p>
 </footer>
 <script src="https://kit.fontawesome.com/d2f3ff054e.js" crossorigin="anonymous"></script>
-<script src="sw.js"></script>
 </body>
 </html>
