@@ -282,54 +282,29 @@
   
 	if (isIOS) {
 	  // Display iOS prompt
-	  document.getElementById("ios-prompt").style.display = "block";
+	  var iosPrompt = document.getElementById("ios-prompt");
+	  iosPrompt.style.display = "block";
+	  var iosCloseButton = iosPrompt.querySelector(".close-button");
+	  iosCloseButton.addEventListener("click", function() {
+		iosPrompt.style.display = "none";
+		localStorage.setItem("iosPromptDismissed", "true");
+	  });
+	  if (localStorage.getItem("iosPromptDismissed")) {
+		iosPrompt.style.display = "none";
+	  }
 	} else if (isAndroid) {
 	  // Display Android prompt
-	  document.getElementById("android-prompt").style.display = "block";
+	  var androidPrompt = document.getElementById("android-prompt");
+	  androidPrompt.style.display = "block";
+	  var androidCloseButton = androidPrompt.querySelector(".close-button");
+	  androidCloseButton.addEventListener("click", function() {
+		androidPrompt.style.display = "none";
+		localStorage.setItem("androidPromptDismissed", "true");
+	  });
+	  if (localStorage.getItem("androidPromptDismissed")) {
+		androidPrompt.style.display = "none";
+	  }
 	}
-  </script>
-  <script>
-	const deferredPrompt = window.deferredPrompt;
-
-	if (deferredPrompt) {
-	const installButton = document.querySelector('.install-button');
-	installButton.style.display = 'block';
-
-	installButton.addEventListener('click', (event) => {
-		// Show the prompt
-		deferredPrompt.prompt();
-
-		// Wait for the user to respond to the prompt
-		deferredPrompt.userChoice.then((choiceResult) => {
-		if (choiceResult.outcome === 'accepted') {
-			console.log('User accepted the install prompt');
-		} else {
-			console.log('User dismissed the install prompt');
-		}
-
-		// Clear the deferredPrompt variable, since we only get one shot at showing the prompt
-		window.deferredPrompt = null;
-		});
-	});
-	}
-
-	function hidePrompt() {
-	const prompt = document.getElementById('ios-prompt') || document.getElementById('android-prompt');
-	prompt.style.display = 'none';
-	}
-
-	window.addEventListener('beforeinstallprompt', (event) => {
-	// Prevent Chrome 67 and earlier from automatically showing the prompt
-	event.preventDefault();
-
-	// Stash the event so it can be triggered later
-	window.deferredPrompt = event;
-
-	const userAgent = window.navigator.userAgent;
-	const prompt = userAgent.match(/(iPhone|iPod|iPad)/i) ? document.getElementById('ios-prompt') : document.getElementById('android-prompt');
-
-	prompt.style.display = 'block';
-	});
   </script>  
 </body>
 </html>
