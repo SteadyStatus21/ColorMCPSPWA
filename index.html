@@ -1,39 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<link rel="apple-touch-icon" sizes="180x180" href="/ColorMCPSPWA/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/ColorMCPSPWA/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/ColorMCPSPWA/favicon-16x16.png">
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="manifest" href="/ColorMCPSPWA/manifest.json">
-	<meta name="apple-mobile-web-app-title" content="ColorMCPS">
-	<meta name="application-name" content="ColorMCPS">
-	<meta name="msapplication-TileColor" content="#da532c">
-	<meta name="theme-color" content="#ffffff">
-	<title>ColorMCPS | Do you have school today?</title>
-	<style>
-	@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
-	body {
-		margin-left: 0.2rem;
-		margin-right: 0.2rem;
-		display: grid;
-		align-items: center;
-		align-content: center;
-		justify-content: center;
-		height: 95vh;
-		background-color: #F5F5F5;
-		color: #222222;
-		font-family: 'Comfortaa', cursive;
-		text-align: center;
-		font-size: 24px;
-		line-height: 1.5;
-		padding-bottom: 80px; /* added */
-		overflow: hidden;
-		touch-action: none;
+  <head>
+    <link rel="apple-touch-icon" sizes="180x180" href="/ColorMCPSPWA/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/ColorMCPSPWA/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/ColorMCPSPWA/favicon-16x16.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/ColorMCPSPWA/manifest.json">
+    <meta name="apple-mobile-web-app-title" content="ColorMCPS">
+    <meta name="application-name" content="ColorMCPS">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>ColorMCPS | Do you have school today?</title>
+    <style>
+	@import url(https://fonts.googleapis.com/css2?family=Comfortaa&display=swap);
+	@keyframes slide-up{
+		from{
+			transform:translateY(100%)
+		}
+		to{
+			transform:translateY(0)
+		}
 	}
 	body{
-		border:10px transparent;
+		margin-left: 20px;
+		margin-right: 20px;
 		display:grid;
 		align-items:center;
 		align-content:center;
@@ -108,290 +99,349 @@
 	footer.expanded .arrow{
 		transform:rotate(180deg)
 	}
-	#ios-prompt, #android-prompt {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-color: rgba(0, 0, 0, 0.8);
-		color: #000;
-		transition: height 0.3s ease-in-out;
-		z-index: 9999;
+	@keyframes slide-up{
+		from{
+			transform:translateY(100%)
 		}
-
-
-		#ios-prompt p,
-		#android-prompt p {
-		font-size: 1.2rem;
-		font-weight: bold;
-		margin: 0 0 1rem 0;
+		to{
+			transform:translateY(0)
 		}
-
-		#ios-prompt ol,
-		#android-prompt ol {
-		font-size: 1.2rem;
-		margin: 1rem;
-		padding: 0;
-		list-style-type: decimal;
-		}
-
-		#ios-prompt li,
-		#android-prompt li {
-		margin: 0.5rem 0;
-		}
-
-		#ios-prompt button,
-		#android-prompt button {
-		background-color: #fff;
-		color: #000;
-		font-size: 1.2rem;
-		font-weight: bold;
-		border: none;
-		border-radius: 5px;
-		padding: 0.5rem 1rem;
-		margin: 1rem;
-		cursor: pointer;
-		}
-
-		#ios-prompt.show,
-		#android-prompt.show {
-		height: 100%;
-		}
-		#ios-prompt,
-		#android-prompt {
-		display: none;
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		background-color: #f8f9fa;
-		border-top: 1px solid #dee2e6;
-		padding: 20px;
-		animation: slide-up 0.5s ease-out forwards;
-		}
-
-		@keyframes slide-up {
-		from {
-			transform: translateY(100%);
-		}
-		to {
-			transform: translateY(0);
-		}
-		}
-
-	</style>
-	<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-	<script>
-	if ('serviceWorker' in navigator) {
-		window.addEventListener('load', () => {
-		navigator.serviceWorker.register('/ColorMCPSPWA/sw.js')
-			.then(registration => {
-			console.log('Service worker registered:', registration);
-			})
-			.catch(error => {
-			console.error('Error registering service worker:', error);
-			});
-		});
 	}
-	</script>	  
-</head>
-<body>
-	<div id="ios-prompt" style="display: none;">
-		<p>To install this app on your home screen:</p>
-		<ol>
-		  <li>Tap the <strong>Share</strong> icon at the bottom of the screen.</li>
-		  <li>Scroll and tap <strong>Add to Home Screen</strong>.</li>
-		  <li>Tap <strong>Add</strong> in the upper-right corner.</li>
-		</ol>
-		<button onclick="hidePrompt('ios-prompt')">Close</button>
-	  </div>
-	  <div id="android-prompt" style="display: none;">
-		<p>To install this app on your home screen:</p>
-		<ol>
-		  <li>Tap the <strong>Menu (3 lines or dots)</strong> button.</li>
-		  <li>Tap <strong>Add to Home Screen</strong> option.</li>
-		  <li>Tap <strong>Add</strong> in the confirmation window.</li>
-		</ol>
-		<button onclick="hidePrompt('android-prompt')">Close</button>
-	  </div>			
-	<script>
-	const jsConfetti = new JSConfetti()
-			const queryParams = new URLSearchParams(window.location.search);
-			const debug = queryParams.get('debug');
-
-			let url = 'https://colormcps.akidnamedfinger.ml/code-status'; 
-			if (debug === 'green') {
-			  url += '?debug=green';
-			}
-			if (debug === 'yellow') {
-			  url += '?debug=yellow';
-			}
-			if (debug === 'blue') {
-			  url += '?debug=blue';
-			}
-			if (debug === 'orange') {
-			  url += '?debug=orange';
-			}
-			if (debug === 'red') {
-			  url += '?debug=red';
-			}
-			if (debug === 'purple') {
-			  url += '?debug=purple';
-			}
-			console.log(url);
-			fetch(url)
-			.then(response => response.json())
-			.then(data => {
-				const colorCode = document.createElement('h1');
-				colorCode.textContent = `${data.color.toUpperCase()}`;
-				document.body.appendChild(colorCode);
-				const break1 = document.createElement('br');
-				document.body.appendChild(break1);
-				const message = document.createElement('p');
-				message.textContent = `${data.message}`;
-				document.body.appendChild(message);
-				
-				//confetti!
-				if (data.color != "green") {
-					jsConfetti.addConfetti()
-				}
-				
-				if (data.color === "red") {
-				  colorCode.style.color = "white";
-				  message.style.color = "white";
-				}
-				if (data.color === "purple") {
-				  colorCode.style.color = "white";
-				  message.style.color = "white";
-				}
-				
-				let bgColor;
-				switch(data.color) {
-					case "green":
-						bgColor = "#74C365";
-						break;
-					case "yellow":
-						bgColor = "#FFC72C";
-						break;
-					case "blue":
-						bgColor = "#0CAFFF";
-						break;
-					case "orange":
-						bgColor = "#F28C28";
-						break;
-					case "red":
-						bgColor = "#7C0A02";
-						break;
-					case "purple":
-						bgColor = "#800080";
-						break;
-					default:
-						bgColor = "#002244";
-				}
-				document.body.style.background = bgColor;
-			})
-			.catch(error => console.error(error));
-	</script>
-<footer>
-	<span class="arrow">
-	  </span>
-	<div id="bar-container">
-	  <p nowrap>Created by SteadyStatus21 <p nowrap href="https://github.com/SteadyStatus21/">GitHub</p></p>
-	  <a href="https://montgomeryschoolsmd.org/emergency/" class="btn btn-primary"><i class="fas fa-external-link-alt"></i>  Source</a>
-	</div>
-  
-  <style>
-  footer {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: #000000;
-	font-color: #ffffff;
-	color: #ffffff;
-	font-size: 14px;
-	padding: 10px;
-	text-align: center;
-	font-family: 'Comfortaa', cursive;
-	overflow: hidden;
-  }
-  
-  #bar-container {
-	height: 100%;
-  }
-  
-  #bar-container.collapsed {
-	height: 0;
-  }
-  
-  #expand-button {
-	display: block;
-	margin: 0 auto;
-  }
-  </style>  
-<script src="https://kit.fontawesome.com/d2f3ff054e.js" crossorigin="anonymous"></script>
-<script>
-	// JavaScript for expanding and collapsing the footer
-	const footer = document.querySelector('footer');
-	const arrow = document.createElement('span');
-	arrow.className = 'arrow';
-	footer.appendChild(arrow);
-
-	footer.addEventListener('click', () => {
-		footer.classList.toggle('expanded');
-		arrow.classList.toggle('arrow');
-	});
-</script>
-<script>
-	var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-	var isAndroid = /Android/.test(navigator.userAgent);
-	let hidePromptCookie = document.cookie.match(/hidePrompt=1/);
-  
-	if (isIOS && !hidePromptCookie) {
-	  // Display iOS prompt
-	  var iosPrompt = document.getElementById("ios-prompt");
-	  iosPrompt.style.display = "block";
-	  if (localStorage.getItem("iosPromptDismissed")) {
-		iosPrompt.style.display = "none";
-	  } else {
-		var iosCloseButton = iosPrompt.querySelector("button");
-		iosCloseButton.addEventListener("click", function() {
-		  iosPrompt.style.display = "none";
-		  localStorage.setItem("iosPromptDismissed", "true");
-		});
-	  }
-	} else if (isAndroid && !hidePromptCookie) {
-	  // Display Android prompt
-	  var androidPrompt = document.getElementById("android-prompt");
-	  androidPrompt.style.display = "block";
-	  if (localStorage.getItem("androidPromptDismissed")) {
-		androidPrompt.style.display = "none";
-	  } else {
-		var androidCloseButton = androidPrompt.querySelector("button");
-		androidCloseButton.addEventListener("click", function() {
-		  androidPrompt.style.display = "none";
-		  localStorage.setItem("androidPromptDismissed", "true");
-		});
-	  }
+	footer{
+		position:fixed;
+		bottom:0;
+		left:0;
+		right:0;
+		background-color:#000;
+		color:#fff;
+		font-size:14px;
+		padding:10px;
+		text-align:center;
+		font-family:Comfortaa,cursive;
+		transition:height .5s;
+		height:50px
 	}
-  
-	function hidePrompt(promptId) {
-	  // Hide the prompt
-	  document.getElementById(promptId).style.display = "none";
-  
-	  //Cookie to never show again
-	  const daysToExpire = new Date(2147483647 * 1000).toUTCString();
-	  document.cookie = 'hidePrompt=1;expires=' + daysToExpire;
-  
-	  //checks and adds 4 months cause of cors policy wth
-	  const hidePromptCookieRefresh = document.cookie.replace(/(?:(?:^|.*;\s*)hidePrompt\s*\=\s*([^;]*).*$)|^.*$/, '$1');
-	  if (hidePromptCookieRefresh) {
-		const fourMonthsFromNow = new Date(Date.now() + (4 * 30 * 24 * 60 * 60 * 1000)).toUTCString();
-		document.cookie = `hidePrompt=${hidePromptCookieRefresh}; expires=${fourMonthsFromNow};`;
-	  }
+	footer.expanded{
+		height:auto
 	}
-  </script>
-</body>
+	footer a{
+		color:#fff;
+		text-decoration:none;
+		display:flex;
+		align-items:center;
+		justify-content:center
+	}
+	footer a:hover{
+		color:#999
+	}
+	.button{
+		display:flex;
+		align-items:center;
+		justify-content:center;
+		height:25px;
+		background-color:#000;
+		color:#fff;
+		text-decoration:none;
+		padding:5px;
+		border-radius:0;
+		position:relative;
+		bottom:0;
+		transform:translateY(0);
+		transition:transform .5s
+	}
+	footer.expanded .button{
+		bottom:60px;
+		transform:translateY(-60px)
+	}
+	.arrow{
+		display:block;
+		margin:0 auto;
+		width:0;
+		height:0;
+		border-style:solid;
+		border-width:10px 5px 0 5px;
+		border-color:#fff transparent transparent transparent;
+		transition:transform .5s
+	}
+	footer.expanded .arrow{
+		transform:rotate(180deg)
+	}
+	#bar-container{
+		height:100%
+	}
+	#bar-container.collapsed{
+		height:0
+	}
+	#expand-button{
+		display:block;
+		margin:0 auto
+	}
+	#android-prompt,#ios-prompt{
+		position:fixed;
+		bottom:50px;
+		left:50%;
+		transform:translate(-50%,0);
+		z-index:9999;
+		width:80%;
+		max-width:500px;
+		padding:20px;
+		background-color:#fff;
+		border-radius:10px;
+		box-shadow:0 0 20px rgba(0,0,0,.2);
+		text-align:center;
+		font-size:14px
+	}
+	@keyframes open{
+		from{
+			transform:translateY(50px)
+		}
+		to{
+			transform:translateY(0)
+		}
+	}
+	@keyframes close{
+		from{
+			transform:translateY(0)
+		}
+		to{
+			transform:translateY(50px)
+		}
+	}
+	#android-prompt p,#ios-prompt p{
+		margin:0 0 10px;
+		font-size:16px;
+		line-height:1.5;
+		text-align:center
+	}
+	#android-prompt ol,#ios-prompt ol{
+		margin:0;
+		padding:0 0 0 20px;
+		list-style-type:decimal;
+		font-size:16px;
+		line-height:1.5
+	}
+	#android-prompt li,#ios-prompt li{
+		margin:5px 0
+	}
+	#android-prompt button,#ios-prompt button{
+		position:absolute;
+		top:10px;
+		right:10px;
+		padding:5px 10px;
+		background-color:transparent;
+		border:none;
+		font-size:18px;
+		color:#888;
+		cursor:pointer
+	}
+	#android-prompt button:hover,#ios-prompt button:hover{
+		color:#000
+	}
+	@keyframes slide-in{
+		from{
+			transform:translate(-50%,100%)
+		}
+		to{
+			transform:translate(-50%,0)
+		}
+	}
+	#bar-container>div>a:nth-child(1){
+		transform:translateY(1.5rem)
+	}
+	#bar-container>div>a:nth-child(2){
+		transform:translateY(1.5rem)
+	}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/ColorMCPSPWA/sw.js').then(registration => {
+            console.log('Service worker registered:', registration);
+          }).catch(error => {
+            console.error('Error registering service worker:', error);
+          });
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      const jsConfetti = new JSConfetti()
+      const queryParams = new URLSearchParams(window.location.search);
+      const debug = queryParams.get('debug');
+      let url = 'https://colormcps.akidnamedfinger.ml/code-status';
+      if (debug === 'green') {
+        url += '?debug=green';
+      }
+      if (debug === 'yellow') {
+        url += '?debug=yellow';
+      }
+      if (debug === 'blue') {
+        url += '?debug=blue';
+      }
+      if (debug === 'orange') {
+        url += '?debug=orange';
+      }
+      if (debug === 'red') {
+        url += '?debug=red';
+      }
+      if (debug === 'purple') {
+        url += '?debug=purple';
+      }
+      console.log(url);
+      fetch(url).then(response => response.json()).then(data => {
+        const footer = document.querySelector('footer');
+        const colorCode = document.createElement('h1');
+        colorCode.textContent = `${data.color.toUpperCase()}`;
+        document.body.appendChild(colorCode);
+        const break1 = document.createElement('br');
+        document.body.appendChild(break1);
+        const message = document.createElement('p');
+        message.textContent = `${data.message}`;
+        document.body.appendChild(message);
+        //creates the server update status
+        const lastUpdated = document.getElementById('date-time');
+        const updatedTime = new Date(data.lastUpdated);
+        const now = new Date();
+        const diff = Math.floor((now.getTime() - updatedTime.getTime()) / 1000); // time difference in seconds
+        if (diff < 60) {
+          lastUpdated.textContent = `${diff} seconds ago`;
+        } else if (diff < 3600) {
+          const minutes = Math.floor(diff / 60);
+          if (minutes === 1) {
+            lastUpdated.textContent = '1 minute ago';
+          } else {
+            lastUpdated.textContent = `${minutes} minutes ago`;
+          }
+        } else if (diff < 86400) {
+          const hours = Math.floor(diff / 3600);
+          if (hours === 1) {
+            lastUpdated.textContent = '1 hour ago';
+          } else {
+            lastUpdated.textContent = `${hours} hours ago`;
+          }
+        } else {
+          const days = Math.floor(diff / 86400);
+          if (days === 1) {
+            lastUpdated.textContent = '1 day ago';
+          } else {
+            lastUpdated.textContent = `${days} days ago`;
+          }
+        }
+        const ping = document.getElementById('ping');
+        ping.textContent = `${data.lastRequestDuration} ms`;
+        //confetti!
+        if (data.color != "green") {
+          jsConfetti.addConfetti()
+        }
+        if (data.color === "red") {
+          colorCode.style.color = "white";
+          message.style.color = "white";
+        }
+        if (data.color === "purple") {
+          colorCode.style.color = "white";
+          message.style.color = "white";
+        }
+        let bgColor;
+        switch (data.color) {
+          case "green":
+            bgColor = "#74C365";
+            break;
+          case "yellow":
+            bgColor = "#FFC72C";
+            break;
+          case "blue":
+            bgColor = "#0CAFFF";
+            break;
+          case "orange":
+            bgColor = "#F28C28";
+            break;
+          case "red":
+            bgColor = "#7C0A02";
+            break;
+          case "purple":
+            bgColor = "#800080";
+            break;
+          default:
+            bgColor = "#002244";
+        }
+        document.body.style.background = bgColor;
+      }).catch(error => console.error(error));
+    </script>
+    <footer>
+      <span class="arrow"></span>
+      <div id="bar-container">
+        <p nowrap>Created by SteadyStatus21
+        <p nowrap href="https://github.com/SteadyStatus21/">GitHub</p>
+        </p>
+        <a href="https://montgomeryschoolsmd.org/emergency/" class="btn btn-primary">
+          <i class="fas fa-external-link-alt"></i> Source </a>
+        <br>
+        <br>
+        <div>
+          <a href="#" class="button" onclick="togglePrompt('#ios-prompt')">Install on iOS</a>
+          <a href="#" class="button" onclick="togglePrompt('#android-prompt')">Install on Android</a>
+        </div>
+        <div class="diagnostics">
+          <p>Ping: <span id="ping">...</span>
+          </p>
+        </div>
+        <div class="info">
+          <p>Last updated (from server): <span id="date-time">...</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+    <div id="ios-prompt" style="display: none;">
+      <p>To install this app on your home screen:</p>
+      <ol>
+        <li>Tap the <strong>Share</strong> icon at the bottom of the screen. </li>
+        <li>Scroll and tap <strong>Add to Home Screen</strong>. </li>
+        <li>Tap <strong>Add</strong> in the confirmation menu. </li>
+      </ol>
+      <button onclick="hidePrompt('ios-prompt')">&#10006; Close</button>
+    </div>
+    <div id="android-prompt" style="display: none;">
+      <p>To install this app on your home screen:</p>
+      <ol>
+        <li>Tap the <strong>Menu (3 lines or dots)</strong> button. </li>
+        <li>Tap <strong>Add to Home Screen</strong> option. </li>
+        <li>Tap <strong>Add</strong> in the confirmation window. </li>
+      </ol>
+      <button onclick="hidePrompt('android-prompt')">&#10006; Close</button>
+    </div>
+    <script src="https://kit.fontawesome.com/d2f3ff054e.js" crossorigin="anonymous"></script>
+    <script>
+      // JavaScript for expanding and collapsing the footer
+      const footer = document.querySelector('footer');
+      const arrow = document.createElement('span');
+      arrow.className = 'arrow';
+      footer.addEventListener('click', () => {
+        footer.classList.toggle('expanded');
+        arrow.classList.toggle('arrow');
+      });
+
+      function togglePrompt(promptId) {
+        const prompt = document.querySelector(promptId);
+        prompt.style.display = (prompt.style.display === 'none') ? 'block' : 'none';
+        const footer = document.querySelector('footer');
+        footer.classList.toggle('expanded');
+      }
+
+      function closePrompt() {
+        const prompts = document.querySelectorAll('#ios-prompt, #android-prompt');
+        prompts.forEach(prompt => prompt.style.display = 'none');
+        const footer = document.querySelector('footer');
+        footer.classList.remove('expanded');
+      }
+
+      function hidePrompt(promptId) {
+        var prompt = document.getElementById(promptId);
+        prompt.style.display = "none";
+      }
+    </script>
+  </body>
 </html>
