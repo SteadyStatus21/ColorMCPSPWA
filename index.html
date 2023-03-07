@@ -15,7 +15,8 @@
 	<style>
 	@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 	body {
-		border: 10px transparent;
+		margin-left: 0.2rem;
+		margin-right: 0.2rem;
 		display: grid;
 		align-items: center;
 		align-content: center;
@@ -124,67 +125,75 @@
 		color: #000;
 		transition: height 0.3s ease-in-out;
 		z-index: 9999;
-		}
+		font-family: 'Comfortaa', cursive; /* added */
+	}
 
-
-		#ios-prompt p,
-		#android-prompt p {
+	#ios-prompt p,
+	#android-prompt p {
 		font-size: 1.2rem;
 		font-weight: bold;
 		margin: 0 0 1rem 0;
-		}
+		font-family: 'Comfortaa', cursive; /* added */
+	}
 
-		#ios-prompt ol,
-		#android-prompt ol {
+	#ios-prompt ol,
+	#android-prompt ol {
 		font-size: 1.2rem;
 		margin: 1rem;
 		padding: 0;
 		list-style-type: decimal;
-		}
+		font-family: 'Comfortaa', cursive; /* added */
+	}
 
-		#ios-prompt li,
-		#android-prompt li {
+	#ios-prompt li,
+	#android-prompt li {
 		margin: 0.5rem 0;
-		}
+		font-family: 'Comfortaa', cursive; /* added */
+	}
 
-		#ios-prompt button,
-		#android-prompt button {
+	#ios-prompt button,
+	#android-prompt button {
 		background-color: #fff;
 		color: #000;
 		font-size: 1.2rem;
 		font-weight: bold;
 		border: none;
-		border-radius: 5px;
-		padding: 0.5rem 1rem;
-		margin: 1rem;
-		cursor: pointer;
-		}
+		padding: 10px;
+		margin: 10px;
+		border-radius: 10px;
+		font-family: 'Comfortaa', cursive; /* added */
+	}
 
-		#ios-prompt.show,
-		#android-prompt.show {
-		height: 100%;
-		}
+	#ios-prompt .close-button,
+	#android-prompt .close-button {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		font-size: 1.2rem;
+		color: #fff;
+		background-color: #000;
+		border: none;
+		border-radius: 50%;
+		height: 30px;
+		width: 30px;
+		cursor: pointer;
+		transition: transform 0.5s;
+		font-family: 'Comfortaa', cursive; /* added */
+	}
+
+	#ios-prompt .close-button:hover,
+	#android-prompt .close-button:hover {
+		background-color: #444444;
+		transform: rotate(360deg);
+	}
+
+	@media only screen and (max-width: 600px) {
 		#ios-prompt,
 		#android-prompt {
-		display: none;
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		background-color: #f8f9fa;
-		border-top: 1px solid #dee2e6;
-		padding: 20px;
-		animation: slide-up 0.5s ease-out forwards;
+			font-size: 0.8rem;
 		}
+	}
 
-		@keyframes slide-up {
-		from {
-			transform: translateY(100%);
-		}
-		to {
-			transform: translateY(0);
-		}
-		}
 
 	</style>
 	<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
@@ -211,7 +220,7 @@
 		  <li>Scroll and tap <strong>Add to Home Screen</strong>.</li>
 		  <li>Tap <strong>Add</strong> in the upper-right corner.</li>
 		</ol>
-		<button onclick="hidePrompt('ios-prompt')">Close</button>
+		<button onclick="hidePrompt('ios-prompt')">&#10006; Close</button>
 	  </div>
 	  <div id="android-prompt" style="display: none;">
 		<p>To install this app on your home screen:</p>
@@ -220,7 +229,7 @@
 		  <li>Tap <strong>Add to Home Screen</strong> option.</li>
 		  <li>Tap <strong>Add</strong> in the confirmation window.</li>
 		</ol>
-		<button onclick="hidePrompt('android-prompt')">Close</button>
+		<button onclick="hidePrompt('android-prompt')">&#10006; Close</button>
 	  </div>			
 	<script>
 	const jsConfetti = new JSConfetti()
