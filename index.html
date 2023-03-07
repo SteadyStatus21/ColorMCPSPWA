@@ -32,88 +32,81 @@
 		overflow: hidden;
 		touch-action: none;
 	}
-
-		footer {
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		background-color: #000000;
-		color: #ffffff;
-		font-size: 14px;
-		padding: 10px;
-		text-align: center;
-		font-family: 'Comfortaa', cursive;
-		transition: height 0.5s; /* added */
-		height: 50px; /* added */
+	body{
+		border:10px transparent;
+		display:grid;
+		align-items:center;
+		align-content:center;
+		justify-content:center;
+		height:95vh;
+		background-color:#f5f5f5;
+		color:#222;
+		font-family:Comfortaa,cursive;
+		text-align:center;
+		font-size:24px;
+		line-height:1.5;
+		padding-bottom:80px;
+		overflow:hidden;
+		touch-action:none
 	}
-
-		footer.expanded {
-		height: 150px; /* added */
+	footer{
+		position:fixed;
+		bottom:0;
+		left:0;
+		right:0;
+		background-color:#000;
+		color:#fff;
+		font-size:14px;
+		padding:10px;
+		text-align:center;
+		font-family:Comfortaa,cursive;
+		transition: height 0.3s ease-in-out;
+		height:50px
 	}
-
-		footer a {
-		color: white;
-		text-decoration: none;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+	footer.expanded{
+		height:auto
 	}
-
-		footer a:hover {
-		color: #999999;
+	footer a{
+		color:#fff;
+		text-decoration:none;
+		display:flex;
+		align-items:center;
+		justify-content:center
 	}
-
-		.button {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		height: 25px;
-		background-color: black;
-		color: white;
-		text-decoration: none;
-		padding: 5px;
-		border-radius: 0px;
-		position: relative; /* added */
-		bottom: 0; /* added */
-		transform: translateY(0); /* added */
-		transition: transform 0.5s; /* added */
+	footer a:hover{
+		color:#999
 	}
-
-		footer.expanded .button {
-		bottom: 60px; /* added */
-		transform: translateY(-60px); /* added */
+	.button{
+		display:flex;
+		align-items:center;
+		justify-content:center;
+		height:25px;
+		background-color:#000;
+		color:#fff;
+		text-decoration:none;
+		padding:5px;
+		border-radius:0;
+		position:relative;
+		bottom:0;
+		transform:translateY(0);
+		transition:transform .5s
 	}
-		footer {
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		background-color: #000000;
-		color: #ffffff;
-		font-size: 14px;
-		padding: 10px;
-		text-align: center;
-		font-family: 'Comfortaa', cursive;
-		transition: height 0.5s;
-		height: 50px;
+	footer.expanded .button{
+		bottom:60px;
+		transform:translateY(-60px)
 	}
-
-	/* Styles for the arrow */
-	.arrow {
-		display: block;
-		margin: 0 auto;
-		width: 0;
-		height: 0;
-		border-style: solid;
-		border-width: 10px 5px 0 5px;
-		border-color: #ffffff transparent transparent transparent;
-		transition: transform 0.5s;
+	.arrow{
+		display:block;
+		margin:0 auto;
+		width:0;
+		height:0;
+		border-style:solid;
+		border-width:10px 5px 0 5px;
+		border-color:#fff transparent transparent transparent;
+		transition:transform .5s
 	}
-
-	/* Styles for the expanded arrow */
-	footer.expanded .arrow {
-		transform: rotate(180deg);
+	footer.expanded .arrow{
+		transform:rotate(180deg)
 	}
 	#ios-prompt, #android-prompt {
 		position: fixed;
@@ -125,75 +118,67 @@
 		color: #000;
 		transition: height 0.3s ease-in-out;
 		z-index: 9999;
-		font-family: 'Comfortaa', cursive; /* added */
-	}
+		}
 
-	#ios-prompt p,
-	#android-prompt p {
+
+		#ios-prompt p,
+		#android-prompt p {
 		font-size: 1.2rem;
 		font-weight: bold;
 		margin: 0 0 1rem 0;
-		font-family: 'Comfortaa', cursive; /* added */
-	}
+		}
 
-	#ios-prompt ol,
-	#android-prompt ol {
+		#ios-prompt ol,
+		#android-prompt ol {
 		font-size: 1.2rem;
 		margin: 1rem;
 		padding: 0;
 		list-style-type: decimal;
-		font-family: 'Comfortaa', cursive; /* added */
-	}
+		}
 
-	#ios-prompt li,
-	#android-prompt li {
+		#ios-prompt li,
+		#android-prompt li {
 		margin: 0.5rem 0;
-		font-family: 'Comfortaa', cursive; /* added */
-	}
+		}
 
-	#ios-prompt button,
-	#android-prompt button {
+		#ios-prompt button,
+		#android-prompt button {
 		background-color: #fff;
 		color: #000;
 		font-size: 1.2rem;
 		font-weight: bold;
 		border: none;
-		padding: 10px;
-		margin: 10px;
-		border-radius: 10px;
-		font-family: 'Comfortaa', cursive; /* added */
-	}
-
-	#ios-prompt .close-button,
-	#android-prompt .close-button {
-		position: absolute;
-		top: 10px;
-		right: 10px;
-		font-size: 1.2rem;
-		color: #fff;
-		background-color: #000;
-		border: none;
-		border-radius: 50%;
-		height: 30px;
-		width: 30px;
+		border-radius: 5px;
+		padding: 0.5rem 1rem;
+		margin: 1rem;
 		cursor: pointer;
-		transition: transform 0.5s;
-		font-family: 'Comfortaa', cursive; /* added */
-	}
+		}
 
-	#ios-prompt .close-button:hover,
-	#android-prompt .close-button:hover {
-		background-color: #444444;
-		transform: rotate(360deg);
-	}
-
-	@media only screen and (max-width: 600px) {
+		#ios-prompt.show,
+		#android-prompt.show {
+		height: 100%;
+		}
 		#ios-prompt,
 		#android-prompt {
-			font-size: 0.8rem;
+		display: none;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		background-color: #f8f9fa;
+		border-top: 1px solid #dee2e6;
+		padding: 20px;
+		animation: slide-up 0.5s ease-out forwards;
 		}
-	}
 
+		@keyframes slide-up {
+		from {
+			transform: translateY(100%);
+		}
+		to {
+			transform: translateY(0);
+		}
+		}
 
 	</style>
 	<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
@@ -220,7 +205,7 @@
 		  <li>Scroll and tap <strong>Add to Home Screen</strong>.</li>
 		  <li>Tap <strong>Add</strong> in the upper-right corner.</li>
 		</ol>
-		<button onclick="hidePrompt('ios-prompt')">&#10006; Close</button>
+		<button onclick="hidePrompt('ios-prompt')">Close</button>
 	  </div>
 	  <div id="android-prompt" style="display: none;">
 		<p>To install this app on your home screen:</p>
@@ -229,7 +214,7 @@
 		  <li>Tap <strong>Add to Home Screen</strong> option.</li>
 		  <li>Tap <strong>Add</strong> in the confirmation window.</li>
 		</ol>
-		<button onclick="hidePrompt('android-prompt')">&#10006; Close</button>
+		<button onclick="hidePrompt('android-prompt')">Close</button>
 	  </div>			
 	<script>
 	const jsConfetti = new JSConfetti()
